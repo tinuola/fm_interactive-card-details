@@ -1,0 +1,51 @@
+:root {
+  --var: value
+}
+
+/* Accessibility */
+.sr-only {
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+.skip {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.skip:focus {
+  position: static;
+  width: auto;
+  height: auto;
+}
+
+/* Content */
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  /* grid-template-rows: 1fr auto; */
+  justify-items: center;
+  align-items: center;
+}
+
+.fm-byline {
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.fm-byline,
+.fm-byline a {}
