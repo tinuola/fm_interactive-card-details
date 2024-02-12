@@ -1,5 +1,5 @@
 :root {
-  --var: value
+  /* --var: value */
 }
 
 /* Accessibility */
@@ -36,8 +36,31 @@ body {
   display: grid;
   grid-template-rows: auto 1fr auto;
   /* grid-template-rows: 1fr auto; */
-  justify-items: center;
-  align-items: center;
+  /* justify-items: center;
+  align-items: center; */
+}
+
+label,
+.error-text {
+  display: block;
+}
+
+.error-text {
+  /* display: none; */
+}
+
+.card-meta-container,
+.card-dates-container,
+.card-dates-inner-container {
+  display: flex;
+}
+
+.card-dates-container {
+  flex-direction: column;
+}
+
+.confirmation-container {
+  /* display: none; */
 }
 
 .fm-byline {
