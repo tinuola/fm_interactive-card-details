@@ -1,4 +1,4 @@
-# Frontend Mentor: Challenge Name
+# Frontend Mentor: Interactive Card Details Form
 
 Solution to the _[Interactive Card Details Form](https://www.frontendmentor.io/challenges/interactive-card-details-form-XpS8cKZDWw)_ challenge on Frontend Mentor.
 
