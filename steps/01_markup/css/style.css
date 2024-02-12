@@ -66,6 +66,16 @@ label,
   display: flex;
 }
 
+.card-meta-container {
+  -moz-column-gap: 3rem;
+       column-gap: 3rem;
+}
+
+.card-dates-inner-container {
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
+}
+
 .card-dates-container {
   flex-direction: column;
 }
