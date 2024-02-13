@@ -1,4 +1,5 @@
-// Step 03c - Simple validation: Show blank error for specific empty field
+// Step 03a - Simple validation: No empty fields
+//
 
 // Card data input
 let cardUsername = document.querySelector('#card-name-input')
@@ -26,33 +27,17 @@ let cardYearDisplay = document.querySelector('#card-year-display')
 let cardCvcDisplay = document.querySelector('#card-cvc-display')
 
 
-const inputFields = [
-  cardUsername,
-  cardNumber,
-  expMonth,
-  expYear,
-  cardCvc
-]
 
-// Event Listeners
+/*****  Event Listeners *****/
+//
 submitBtn.addEventListener('click', function(){
-
-  // Store input data if it exists
-  let inputFieldValues = [
-    cardUsername.value,
-    cardNumber.value,
-    expMonth.value,
-    expYear.value,
-    cardCvc.value
-  ]
-
-  // Check if input data exists in all fields
-  let fieldsCompletedStatus = checkFields(inputFieldValues)
+  // Capture state of fields
+  let fieldsCompletedStatus = checkFields()
 
   if(fieldsCompletedStatus){
     displayData()
   } else {
-    displayErrorMsgs(inputFieldValues)
+    displayErrorMsgs()
   }
 })
 
@@ -64,21 +49,8 @@ resetBtn.addEventListener('click', function(){
 })
 
 
-inputFields.forEach( field => {
-
-  let errorField = field.nextElementSibling
-  let hasErrorMsg = errorField.innerText
-  
-  if(hasErrorMsg){
-    field.addEventListener('keyup', function() {
-      field.nextElementSibling.innerText = ''
-    })
-  }
-
-})
-
-
-// Methods
+/*****  Methods *****/
+//
 function displayData(){
   cardNameDisplay.innerText = cardUsername.value
   cardNumberDisplay.innerText = cardNumber.value
@@ -91,28 +63,36 @@ function displayData(){
 }
 
 
-function checkFields(fields){
+function checkFields(){
+  let fields = [
+    cardUsername.value,
+    cardNumber.value,
+    expMonth.value,
+    expYear.value,
+    cardCvc.value
+  ]
   // console.log(fields)
-
-  return fields.every( value => value !== '')
+  
+  return fields.every( field => field !== '')
 }
 
 
-function displayErrorMsgs(fields){
-  // console.log(inputFieldValues)
-  
-  let blankErrorMsg = `Can't be blank`
+function displayErrorMsgs(){
+  let msg = `Can't be blank`
 
-  fields.forEach( (value, index) => {
-    if(!value){
-      // console.log(blankErrorMsg)
-
-      errorFields[index].style.display = 'block'
-      errorFields[index].innerText = blankErrorMsg
-      errorFields[index].style.color = 'red'
-    }
+  errorFields.forEach( field => {
+    field.style.display = 'block'
+    // ToDo: Use 'classlist' to add error state
+    field.style.color = 'red'
+    field.innerText = msg
   })
+}
 
+function clearErrorMsgs(){
+  errorFields.forEach( field => {
+    field.innerText = ''
+    field.style.display = 'none'
+  })
 }
 
 
@@ -127,5 +107,7 @@ function resetApp (){
   cardMonthDisplay.innerText = '00'
   cardYearDisplay.innerText = '00'
   cardCvcDisplay.innerText = '000'
+
+  clearErrorMsgs()
 }
 
