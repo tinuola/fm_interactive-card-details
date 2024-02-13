@@ -28,7 +28,7 @@ let cardCvcDisplay = document.querySelector('#card-cvc-display')
 
 
 
-/*****  Event Listeners *****/
+/***** Event Listeners *****/
 //
 submitBtn.addEventListener('click', function(){
   // Capture state of fields
@@ -49,7 +49,7 @@ resetBtn.addEventListener('click', function(){
 })
 
 
-/*****  Methods *****/
+/***** Methods *****/
 //
 function displayData(){
   cardNameDisplay.innerText = cardUsername.value

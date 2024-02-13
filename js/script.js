@@ -1,4 +1,4 @@
-// Step 03c - Simple validation: Show blank error for specific empty field
+// Step 04 - Data validation
 
 // Card data input
 let cardUsername = document.querySelector('#card-name-input')
@@ -34,27 +34,11 @@ const inputFields = [
   cardCvc
 ]
 
-// Event Listeners
-submitBtn.addEventListener('click', function(){
+/***** Event Listeners *****/
+//
 
-  // Store input data if it exists
-  let inputFieldValues = [
-    cardUsername.value,
-    cardNumber.value,
-    expMonth.value,
-    expYear.value,
-    cardCvc.value
-  ]
-
-  // Check if input data exists in all fields
-  let fieldsCompletedStatus = checkFields(inputFieldValues)
-
-  if(fieldsCompletedStatus){
-    displayData()
-  } else {
-    displayErrorMsgs(inputFieldValues)
-  }
-})
+// Refactored submit handler
+submitBtn.addEventListener('click', handleFormSubmit)
 
 
 resetBtn.addEventListener('click', function(){
@@ -78,7 +62,103 @@ inputFields.forEach( field => {
 })
 
 
-// Methods
+/***** Methods *****/
+//
+
+function handleFormSubmit(){
+  // Store data from input fields
+  let inputFieldValues = [
+    cardUsername.value,
+    cardNumber.value,
+    expMonth.value,
+    expYear.value,
+    cardCvc.value
+  ]
+
+  // Check if input data exists and is valid in all fields
+  let allFieldsHaveValidStatus = checkFields(inputFieldValues)
+  // console.log(allFieldsHaveValidStatus)
+
+  if(allFieldsHaveValidStatus){
+    displayData()
+  } 
+}
+
+
+// Let checkFields handle error msg display
+function checkFields(fields){
+  // console.log(fields)
+
+  let status = []
+
+  fields.forEach( (value, index) => {
+    let isValidData = validateData(value, index)
+    // console.log(isValidData)
+    let isWhiteSpace = /\s*$/.test(value)
+
+    if (value === '' || isWhiteSpace){
+      displayNoEmptyFieldError(index)
+      status.push(false)
+    } else if (!isValidData){
+      displayInvalidDataError(index)
+      status.push(false)
+    } else {
+      status.push(true)
+    }
+  })
+
+  return status.every( entry => entry === true )
+}
+
+
+function validateData(value, index){
+
+  // console.log(typeof value)
+  let regexArr = [
+    `(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)`,
+    `^[0-9]{3}$`,
+    `^[0-9]{2}$`,
+    `^[0-9]{2}$`,
+    `^[0-9]{3}$`
+  ]
+
+
+  let regex = new RegExp(regexArr[index])
+
+  return regex.test(value)
+}
+
+
+function displayNoEmptyFieldError(index){
+  // console.log(inputFieldValues)
+  
+  let blankErrorMsg = `Can't be blank`
+  applyErrorStyle (index)
+  errorFields[index].innerText = blankErrorMsg
+}
+
+
+function displayInvalidDataError(index){
+  // console.log(inputFieldValues)
+  
+  let msgs = [
+    `No symbols or special characters`,
+    `Wrong format, must be 16 digits only`,
+    `Must be 2 digits`,
+    `Must be 2 digits`,
+    `Must be 3 digits`
+  ]
+  applyErrorStyle (index)
+  errorFields[index].innerText = msgs[index]
+}
+
+
+function applyErrorStyle (index){
+  errorFields[index].style.display = 'block'
+  errorFields[index].style.color = 'red'
+}
+
+
 function displayData(){
   cardNameDisplay.innerText = cardUsername.value
   cardNumberDisplay.innerText = cardNumber.value
@@ -88,31 +168,6 @@ function displayData(){
 
   formElem.style.display = 'none'
   successElem.style.display = 'block'
-}
-
-
-function checkFields(fields){
-  // console.log(fields)
-
-  return fields.every( value => value !== '')
-}
-
-
-function displayErrorMsgs(fields){
-  // console.log(inputFieldValues)
-  
-  let blankErrorMsg = `Can't be blank`
-
-  fields.forEach( (value, index) => {
-    if(!value){
-      // console.log(blankErrorMsg)
-
-      errorFields[index].style.display = 'block'
-      errorFields[index].innerText = blankErrorMsg
-      errorFields[index].style.color = 'red'
-    }
-  })
-
 }
 
 

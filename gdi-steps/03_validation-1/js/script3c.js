@@ -34,7 +34,8 @@ const inputFields = [
   cardCvc
 ]
 
-// Event Listeners
+/***** Event Listeners *****/
+//
 submitBtn.addEventListener('click', function(){
 
   // Store input data if it exists
@@ -78,7 +79,8 @@ inputFields.forEach( field => {
 })
 
 
-// Methods
+/***** Methods *****/
+//
 function displayData(){
   cardNameDisplay.innerText = cardUsername.value
   cardNumberDisplay.innerText = cardNumber.value
