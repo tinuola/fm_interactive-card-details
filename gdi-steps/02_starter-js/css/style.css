@@ -1,0 +1,100 @@
+:root {
+  /* --var: value */
+  --dark-violet: hsl(278, 68%, 11%);
+  --dark-gray-violet: hsl(279, 6%, 55%);
+  --light-gray-violet: hsl(270, 3%, 87%);
+  --primary-gradient: hsl(249, 99%, 64%);
+  --secondary-gradient: hsl(278, 94%, 30%);
+  --error-red: hsl(0, 100%, 66%);
+  --white: hsl(0, 0%, 100%); 
+}
+
+/* Accessibility */
+.sr-only {
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+.skip {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.skip:focus {
+  position: static;
+  width: auto;
+  height: auto;
+}
+
+/* Content */
+
+body {
+  /* display: grid;
+  grid-template-rows: auto 1fr auto; */
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  /* background: linear-gradient(var(--primary-gradient), var(--secondary-gradient)); */
+  /* grid-template-rows: 1fr auto; */
+  /* justify-items: center;
+  align-items: center; */
+}
+
+.card-date-display {
+  display: inline-block;
+}
+
+label,
+.error-text {
+  display: block;
+}
+
+.error-text {
+  display: none;
+}
+
+.card-meta-container,
+.card-dates-container,
+.card-dates-inner-container {
+  display: flex;
+}
+
+.card-meta-container {
+  -moz-column-gap: 3rem;
+       column-gap: 3rem;
+}
+
+.card-dates-inner-container {
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
+}
+
+.card-dates-container {
+  flex-direction: column;
+}
+
+.confirmation-container {
+  display: none;
+}
+
+.fm-byline {
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  line-height: 1.5;
+  text-align: center;
+  font-weight: 400;
+}
+
+.fm-byline,
+.fm-byline a {}
