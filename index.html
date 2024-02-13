@@ -50,14 +50,17 @@
               <p id="card-number-display">0000 0000 0000 0000</p>
               <div class="card-meta-text-wrapper">
                 <span id="card-name-display">Jane Appleseed</span>
-                <span id="card-date-display">00/00</span>
+                <!-- Note: Had to rewrite this element group! -->
+                <div class="card-date-display">
+                  <span id="card-month-display">00</span>/<span id="card-year-display">00</span>
+                </div>
               </div>
             </div>
           </div>
 
           <!-- Card Back -->
           <div class="card card__back">
-            <span id="cvc-display">000</span>
+            <span id="card-cvc-display">000</span>
           </div>
         </section>
 
@@ -116,7 +119,7 @@
             <br><!-- For visual spacing only-->
 
             <!-- Submit btn -->
-            <button type="button">Confirm</button>
+            <button type="button" id="submit-btn">Confirm</button>
           </form>
 
           <!-- For visual spacing only -- will be deleted later -->
@@ -130,7 +133,7 @@
               <p>We've added your card details</p>
             </div>
             <br><!-- For visual spacing only-->
-            <button type="button">Continue</button>
+            <button type="button" id="reset-btn">Continue</button>
           </div>
 
           <!-- Footer -->

@@ -51,13 +51,17 @@ body {
   align-items: center; */
 }
 
+.card-date-display {
+  display: inline-block;
+}
+
 label,
 .error-text {
   display: block;
 }
 
 .error-text {
-  /* display: none; */
+  display: none;
 }
 
 .card-meta-container,
@@ -81,7 +85,7 @@ label,
 }
 
 .confirmation-container {
-  /* display: none; */
+  display: none;
 }
 
 .fm-byline {
