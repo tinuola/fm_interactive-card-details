@@ -1,4 +1,4 @@
-// Step 04b - Data validation (contd)
+// Step 04a - Data validation
 
 // Card data input
 let cardUsername = document.querySelector('#card-name-input')
@@ -83,15 +83,17 @@ function handleFormSubmit(){
 }
 
 
+// Let checkFields handle error msg display
 function checkFields(fields){
+  // console.log(fields)
   let status = []
 
   fields.forEach( (value, index) => {
     let isValidData = validateData(value, index)
-    console.log(isValidData)
-    let hasExtraWhiteSpace = /^\s{2,}$/.test(value)
+    // console.log(isValidData)
+    let isWhiteSpace = /\s*$/.test(value)
 
-    if (value === '' || hasExtraWhiteSpace){
+    if (value === '' || isWhiteSpace){
       displayNoEmptyFieldError(index)
       status.push(false)
     } else if (!isValidData){
@@ -109,11 +111,11 @@ function checkFields(fields){
 function validateData(value, index){
   // console.log(typeof value)
   let regexArr = [
-    `^[A-Z][a-z]*(([,.] |[ '-])[A-Za-z][a-z]*)*(\.?)$`, /* Full name */
-    `^([0-9]){16}$`, /* 16-digits */
-    `^([0][1-9])|[1][0-2]$`, /* 2-digit month*/
-    `^([0-2][0-9])$`, /* 2-digit year */
-    `^([0-9]){3}$` /* 3-digit cvc */
+    `(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)`,
+    `^[0-9]{3}$`,
+    `^[0-9]{2}$`,
+    `^[0-9]{2}$`,
+    `^[0-9]{3}$`
   ]
 
   let regex = new RegExp(regexArr[index])
@@ -135,10 +137,10 @@ function displayInvalidDataError(index){
   // console.log(inputFieldValues)
   
   let msgs = [
-    `No symbols, characters, extra spaces`,
-    `Must be 16 digits, no spaces`,
-    `Must be 2 digits: 00-12`,
-    `Must be 2 digits: 00-29`,
+    `No symbols or special characters`,
+    `Wrong format, must be 16 digits only`,
+    `Must be 2 digits`,
+    `Must be 2 digits`,
     `Must be 3 digits`
   ]
   applyErrorStyle (index)

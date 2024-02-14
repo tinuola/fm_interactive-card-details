@@ -8,3 +8,12 @@
 ### Caveat
 
 **⚠️ IMPORTANT ⚠️: When you create the live version of your project, we recommmend giving it a random name for the URL. This is because with it being a fake credit card form, some browsers will open a warning notice before people can access your project. So it's best to name the project something unrelated to credit cards so that browsers don't show the warning to people viewing your project.**
+
+
+### Regex
+
+- Tester: https://regex101.com/
+- Delete unnecessary whitespace
+ - https://regexpattern.com/whitespace-between-words/
+- First and last name
+ - https://stackoverflow.com/a/68896296
