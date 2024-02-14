@@ -126,10 +126,10 @@ function displayNoEmptyFieldError(index){
 
 function displayInvalidDataError(index){
   let msgs = [
-    `No symbols, characters, extra spaces, single names`,
+    `No symbols, characters, extra spaces`,
     `Must be 16 digits, no spaces`,
-    `Must be 2 digits: 00-12`,
-    `Must be 2 digits: 00-29`,
+    `Must be: 01-12`,
+    `Must be: 00-30`,
     `Must be 3 digits`
   ]
 
