@@ -52,7 +52,9 @@ inputFields.forEach( field => {
   
   if(hasErrorMsg){
     field.addEventListener('change', function() {
-      field.nextElementSibling.innerText = ''
+      errorField.innerText = ''
+      errorField.classList.remove('error-state')
+      field.classList.remove('error-input')
     })
   }
 })
@@ -124,7 +126,7 @@ function displayNoEmptyFieldError(index){
 
 function displayInvalidDataError(index){
   let msgs = [
-    `No symbols, characters, extra spaces`,
+    `No symbols, characters, extra spaces, single names`,
     `Must be 16 digits, no spaces`,
     `Must be 2 digits: 00-12`,
     `Must be 2 digits: 00-29`,
@@ -137,8 +139,9 @@ function displayInvalidDataError(index){
 
 
 function applyErrorStyle (index){
+  inputFields[index].classList.add('error-input')
   errorFields[index].style.display = 'block'
-  errorFields[index].style.color = 'red'
+  errorFields[index].classList.add('error-state')
 }
 
 

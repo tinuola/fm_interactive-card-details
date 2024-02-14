@@ -76,6 +76,7 @@ main {
 
 @media(min-width: 991px){
   .section__card {
+    background-image: url('/assets/images/bg-main-desktop.png');
     min-height: 240px;
     height: 100%;
     grid-row: span 2;
@@ -85,8 +86,6 @@ main {
 .card-date-display {
   display: inline-block;
 }
-
-/*  */
 
 .section__form {
   padding-top: 90px;
@@ -128,6 +127,27 @@ input {
   padding: .5rem .75rem;
 }
 
+input:focus {
+  outline: 1px solid var(--primary-gradient);
+}
+
+input.error-input:focus{
+  outline: 1px solid var(--error-red);
+}
+
+/* Remove input field arrows */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 input::-webkit-input-placeholder {
   color: var(--light-gray-violet);
 }
@@ -152,15 +172,31 @@ input::placeholder {
 button {
   margin-top: .625rem;
   padding: .625rem 0;
-  border: 1px solid var(--dark-violet);
+  border: 2px solid var(--dark-violet);
   border-radius: .5rem;
   background-color: var(--dark-violet);
   color: var(--white);
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity .2s linear, transform .2s linear;
+}
+
+button:hover {
+  opacity: .875;
+  transform: scale(1.02);
 }
 
 label,
 .error-text {
   display: block;
+}
+
+.error-state {
+  color: var(--error-red);
+}
+
+.error-input {
+  border: 1px solid var(--error-red);
 }
 
 .form-label-text {
@@ -174,10 +210,6 @@ label,
   font-size: .75rem;
   margin-top: .45rem;
   display: none;
-}
-
-.card-name-input-wrapper {
-
 }
 
 .card-meta-container,
@@ -233,11 +265,9 @@ label,
   color: var(--dark-gray-violet);
 }
 
-
 footer {
   align-self: flex-end;
   padding-bottom: 1rem;
-  
 }
 
 @media(min-width: 991px){

@@ -31,5 +31,6 @@ Live Site: [tinuola.github.io/fm_interactive-card-details](https://tinuola.githu
 - HTML, CSS, JavaScript
 - CSS Resets
 - []()
+- [Hide Arrows From Input Number](https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp) _(W3Schools)_
 
 _Visit my [Frontend Mentor profile](https://www.frontendmentor.io/profile/tinuola) to view other challenges I've completed!_
