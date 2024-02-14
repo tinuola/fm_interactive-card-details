@@ -32,7 +32,7 @@
     <title>Interactive Card Details Form | Frontend Mentor</title>
   </head>
   <body>
-    <div class="container">
+    <div class="site-container">
       <header>
         <a href="#main" class="skip">Skip to main content</a>
         <h1 class="sr-only">Interactive Card Details Form - A Frontend Mentor Project</h1>
@@ -66,9 +66,6 @@
           </div>
         </section>
 
-        <!-- For visual spacing only -- will be deleted later -->
-        <br><hr><br>
-
         <!-- Form Display Section -->
         <section class="section__form">
           <!-- Form -->
@@ -79,7 +76,6 @@
               <input type="text" class="form-input-field" id="card-name-input" placeholder="e.g. Jane Appleseed">
               <span class="error-text">To display error</span>
             </div>
-            <br><!-- For visual spacing only-->
 
             <!-- Card number field -->
             <div class="card-number-input-wrapper">
@@ -87,16 +83,13 @@
               <input type="text" class="form-input-field" id="card-number-input" placeholder="e.g. 1234567891230000">
               <span class="error-text">To display error</span>
             </div>
-            <br><!-- For visual spacing only-->
 
             <!-- Card meta group -->
             <div class="card-meta-container">
               <!-- Card dates -->
               <div class="card-dates-container">
-                <p>Exp. Date (MM/YY)</p>
+                <p class="form-label-text">Exp. Date (MM/YY)</p>
                 <div class="card-dates-inner-container">
-                  <!-- Note: Added sr-only class to hide the label for these two
-                  fields but still make them accessible to assistive devices -->
                   <div>
                     <label for="card-month-input" class="sr-only">Expiration Month</label>
                     <input type="number" class="form-input-field" id="card-month-input" placeholder="MM">
@@ -118,22 +111,17 @@
                 <span class="error-text">To display error</span>
               </div>
             </div>
-            <br><!-- For visual spacing only-->
 
             <button type="button" id="submit-btn">Confirm</button>
           </form>
 
-          <!-- For visual spacing only -- will be deleted later -->
-          <br><hr><br>
-
           <!-- Completed State -->
           <div class="confirmation-container">
-            <img src="" alt="">
+            <img src="/assets/images/icon-complete.svg" alt="">
             <div class="confirmation-text-wrapper">
               <p>Thank you!</p>
               <p>We've added your card details</p>
             </div>
-            <br><!-- For visual spacing only-->
             <button type="button" id="reset-btn">Continue</button>
           </div>
 
