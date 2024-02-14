@@ -1,5 +1,3 @@
-// Step 04b - Data validation (contd)
-
 // Card data input
 let cardUsername = document.querySelector('#card-name-input')
 let cardNumber = document.querySelector('#card-number-input')
@@ -37,7 +35,6 @@ const inputFields = [
 /***** Event Listeners *****/
 //
 
-// Refactored submit handler
 submitBtn.addEventListener('click', handleFormSubmit)
 
 
@@ -48,6 +45,7 @@ resetBtn.addEventListener('click', function(){
 })
 
 
+// Clear error state
 inputFields.forEach( field => {
   let errorField = field.nextElementSibling
   let hasErrorMsg = errorField.innerText
@@ -64,7 +62,6 @@ inputFields.forEach( field => {
 //
 
 function handleFormSubmit(){
-  // Store data from input fields
   let inputFieldValues = [
     cardUsername.value,
     cardNumber.value,
@@ -73,9 +70,7 @@ function handleFormSubmit(){
     cardCvc.value
   ]
 
-  // Check if input data exists and is valid in all fields
   let allFieldsHaveValidStatus = checkFields(inputFieldValues)
-  // console.log(allFieldsHaveValidStatus)
 
   if(allFieldsHaveValidStatus){
     displayData()
@@ -88,7 +83,6 @@ function checkFields(fields){
 
   fields.forEach( (value, index) => {
     let isValidData = validateData(value, index)
-    console.log(isValidData)
     let hasExtraWhiteSpace = /^\s{2,}$/.test(value)
 
     if (value === '' || hasExtraWhiteSpace){
@@ -107,7 +101,6 @@ function checkFields(fields){
 
 
 function validateData(value, index){
-  // console.log(typeof value)
   let regexArr = [
     `^[A-Z][a-z]*(([,.] |[ '-])[A-Za-z][a-z]*)*(\.?)$`, /* Full name */
     `^([0-9]){16}$`, /* 16-digits */
@@ -123,8 +116,6 @@ function validateData(value, index){
 
 
 function displayNoEmptyFieldError(index){
-  // console.log(inputFieldValues)
-  
   let blankErrorMsg = `Can't be blank`
   applyErrorStyle (index)
   errorFields[index].innerText = blankErrorMsg
@@ -132,8 +123,6 @@ function displayNoEmptyFieldError(index){
 
 
 function displayInvalidDataError(index){
-  // console.log(inputFieldValues)
-  
   let msgs = [
     `No symbols, characters, extra spaces`,
     `Must be 16 digits, no spaces`,
@@ -141,6 +130,7 @@ function displayInvalidDataError(index){
     `Must be 2 digits: 00-29`,
     `Must be 3 digits`
   ]
+
   applyErrorStyle (index)
   errorFields[index].innerText = msgs[index]
 }

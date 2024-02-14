@@ -1,4 +1,9 @@
-// Step 04a - Data validation
+// Step 04a - Data validation: 
+// Simple regex validation
+// Move error display logic into checkFields()
+// Move data submission function out of event-listener
+// Refactor error msgs display, styling into smaller functions
+
 
 // Card data input
 let cardUsername = document.querySelector('#card-name-input')
