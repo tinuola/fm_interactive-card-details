@@ -43,7 +43,7 @@ main {
   background-size: cover;
   background-repeat: no-repeat;
   color: var(--white);
-  
+  position: relative;
 }
 
 @media(min-width: 991px){
@@ -53,6 +53,61 @@ main {
     height: 100%;
     grid-row: span 2;
   }
+}
+
+.card {
+  width: 285px;
+  height: 155px;
+  background-size: cover;
+  border-radius: 0px;
+  overflow: hidden;
+}
+
+.card__front {
+  background-image: url('/assets/images/bg-card-front.png');
+  padding: 1.25rem;
+  position: absolute;
+  top: 120px;
+  left: 25px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2.25rem;
+}
+
+.card__back {
+  background-image: url('/assets/images/bg-card-back.png');
+  position: absolute;
+  top: 32px;
+  right: 16px;
+}
+
+#card-number-display {
+  font-size: 1.125rem;
+}
+
+#card-cvc-display {
+  font-size: .75rem;
+  position: absolute;
+  z-index: 2;
+  top: 68px;
+  right: 40px;
+}
+
+.card__front img {
+  width: 50px;
+}
+
+.card-meta-text-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: .5rem;
+}
+
+.card-meta-text-wrapper span {
+  font-size: .65rem;
+  text-transform: uppercase;
 }
 
 .card-date-display {
