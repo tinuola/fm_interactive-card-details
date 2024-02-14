@@ -51,7 +51,7 @@ form,
 }
 
 .section__card {
-  background-image: url('../assets/images/bg-main-mobile.png');
+  background-image: url('/assets/images/bg-main-mobile.png');
   height: 240px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -61,7 +61,7 @@ form,
 
 @media(min-width: 1199px){
   .section__card {
-    background-image: url('../assets/images/bg-main-desktop.png');
+    background-image: url('/assets/images/bg-main-desktop.png');
     min-height: 700px;
     height: 100vh;
     grid-row: span 2;
@@ -87,7 +87,7 @@ form,
 }
 
 .card__front {
-  background-image: url('../assets/images/bg-card-front.png');
+  background-image: url('/assets/images/bg-card-front.png');
   padding: 1.25rem;
   position: absolute;
   top: 120px;
@@ -108,7 +108,7 @@ form,
 }
 
 .card__back {
-  background-image: url('../assets/images/bg-card-back.png');
+  background-image: url('/assets/images/bg-card-back.png');
   position: absolute;
   top: 32px;
   right: 1px;

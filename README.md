@@ -24,13 +24,13 @@ Live Site: [tinuola.github.io/fm_interactive-card-details](https://tinuola.githu
 
 ### Enhancement(s)
 
--
+- Validate on input
 
 ### Tools & Resources
 
 - HTML, CSS, JavaScript
 - CSS Resets
-- []()
+- Regular Expressions [[1](https://stackoverflow.com/a/68896296), [2](https://regexpattern.com/whitespace-between-words/), [3](https://regex101.com/)]
 - [Hide Arrows From Input Number](https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp) _(W3Schools)_
 
 _Visit my [Frontend Mentor profile](https://www.frontendmentor.io/profile/tinuola) to view other challenges I've completed!_
