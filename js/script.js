@@ -147,13 +147,25 @@ function applyErrorStyle (index){
 
 function displayData(){
   cardNameDisplay.innerText = cardUsername.value
-  cardNumberDisplay.innerText = cardNumber.value
+  cardNumberDisplay.innerText = sliceCardNumber(cardNumber.value)
   cardMonthDisplay.innerText = expMonth.value
   cardYearDisplay.innerText = expYear.value
   cardCvcDisplay.innerText = cardCvc.value
 
   formElem.style.display = 'none'
   successElem.style.display = 'block'
+}
+
+
+function sliceCardNumber(str){
+  let slicedNum = ''
+
+  for(let i=0; i< str.length; i+=4){
+    let substr = str.substring(i, i+4)
+    slicedNum += substr + ' '
+  }
+
+  return slicedNum.trimEnd()
 }
 
 
