@@ -48,15 +48,15 @@ resetBtn.addEventListener('click', function(){
 // Clear error state
 inputFields.forEach( field => {
   let errorField = field.nextElementSibling
-  let hasErrorMsg = errorField.innerText
-  
-  if(hasErrorMsg){
-    field.addEventListener('change', function() {
+
+  field.addEventListener('change', function() {
+    let hasErrorMsg = errorField.innerText
+    if(hasErrorMsg){
       errorField.innerText = ''
       errorField.classList.remove('error-state')
       field.classList.remove('error-input')
-    })
-  }
+    }
+  })
 })
 
 
