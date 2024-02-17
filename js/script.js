@@ -1,3 +1,10 @@
+/* Step 07 - Animation
+ * Create animation steps/classes in CSS
+ * Animate on submit when fields are empty or there is invalid data
+ */
+
+
+
 // Container for input, display, error fields
 const appData = []
 
@@ -8,6 +15,9 @@ let resetBtn = document.querySelector('#reset-btn')
 // Sections
 let formElem = document.querySelector('form')
 let successElem = document.querySelector('.confirmation-container')
+
+// Card Images
+let cards = document.querySelectorAll('.card')
 
 
 
@@ -129,7 +139,10 @@ function handleFormSubmit(){
   if(allFieldsHaveValidStatus){
     formElem.style.display = 'none'
     successElem.style.display = 'block'
-  } 
+    scaleAnimation()
+  } else {
+    shakeAnimation()
+  }   
 }
 
 
@@ -224,4 +237,27 @@ function sliceCardNumber(str){
   }
 
   return slicedNum.trimEnd()
+}
+
+
+function scaleAnimation(){
+  cards.forEach( card => {
+    setTimeout(() => {
+      card.classList.add('scale')
+    }, 100)
+
+    setTimeout(() => {
+      card.classList.remove('scale')
+    }, 1000)
+  })
+}
+
+
+function shakeAnimation(){
+  cards.forEach( card => {
+    card.classList.add('shake')
+    setTimeout(() => {
+      card.classList.remove('shake')
+    }, 500)
+  })
 }
