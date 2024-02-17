@@ -74,14 +74,14 @@
             <!-- Card name field -->
             <div class="card-name-input-wrapper">
               <label for="card-name-input" class="form-label-text">Cardholder Name</label>
-              <input type="text" class="form-input-field" id="card-name-input" placeholder="e.g. Jane Appleseed">
+              <input type="text" class="form-input-field" data-field="card-name" id="card-name-input" placeholder="e.g. Jane Appleseed">
               <span class="error-text"></span>
             </div>
 
             <!-- Card number field -->
             <div class="card-number-input-wrapper">
               <label for="card-number-input" class="form-label-text">Card Number</label>
-              <input type="text" class="form-input-field" id="card-number-input" placeholder="e.g. 1234567891230000">
+              <input type="text" class="form-input-field" data-field="card-number" id="card-number-input" placeholder="e.g. 1234567891230000">
               <span class="error-text"></span>
             </div>
 
@@ -93,13 +93,13 @@
                 <div class="card-dates-inner-wrapper">
                   <div>
                     <label for="card-month-input" class="sr-only">Expiration Month</label>
-                    <input type="number" class="form-input-field" id="card-month-input" placeholder="MM">
+                    <input type="number" class="form-input-field" data-field="card-month" id="card-month-input" placeholder="MM">
                     <span class="error-text"></span>
                   </div>
 
                   <div>
                     <label for="card-year-input" class="sr-only">Expiration Year</label>
-                    <input type="number" class="form-input-field" id="card-year-input" placeholder="YY">
+                    <input type="number" class="form-input-field" data-field="card-year" id="card-year-input" placeholder="YY">
                     <span class="error-text"></span>
                   </div>
                 </div>
@@ -108,7 +108,7 @@
               <!-- Card cvc -->
               <div class="card-cvc-input-wrapper">
                 <label for="card-cvc-input" class="form-label-text">CVC</label>
-                <input type="number" class="form-input-field" id="card-cvc-input" placeholder="e.g. 123">
+                <input type="number" class="form-input-field" data-field="card-cvc" id="card-cvc-input" placeholder="e.g. 123">
                 <span class="error-text"></span>
               </div>
             </div>
