@@ -101,7 +101,6 @@ main {
 .card__front {
   background-image: url('../assets/images/bg-card-front.png');
   padding: 1.25rem;
-  /* position: absolute; */
   top: 120px;
   right: 55px;
   z-index: 2;
@@ -119,16 +118,19 @@ main {
   }
 }
 
-/* .card__front img */
 .card-logo {
   width: 50px;
 }
 
 @media(min-width: 1199px){
-  /* .card__front img */
   .card-logo {
     width: 85px;
   }
+}
+
+#card-name-display {
+  letter-spacing: 1px;
+  font-weight: 700;
 }
 
 #card-number-display {
@@ -150,8 +152,9 @@ main {
 }
 
 .card-meta-text-wrapper span {
-  font-size: .65rem;
+  font-size: .75rem;
   text-transform: uppercase;
+  font-weight: 700;
 }
 
 @media(min-width: 1199px){
@@ -171,7 +174,6 @@ main {
 
 .card__back {
   background-image: url('../assets/images/bg-card-back.png');
-  /* position: absolute; */
   top: 32px;
   right: 1px;
   z-index: 1;
@@ -187,6 +189,8 @@ main {
 #card-cvc-display {
   font-size: .75rem;
   position: absolute;
+  font-weight: 700;
+  color: var(--dark-violet);
   z-index: 2;
   top: 67px;
   right: 40px;
