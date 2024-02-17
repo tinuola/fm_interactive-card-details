@@ -1,3 +1,4 @@
+// Input, Display, Error fields
 const appData = [
   { input: document.querySelector('#card-name-input'),
     output: document.querySelector('#card-name-display'),
@@ -30,33 +31,35 @@ const appData = [
 let submitBtn = document.querySelector('#submit-btn')
 let resetBtn = document.querySelector('#reset-btn')
 
-// Error messages
-let errorFields = document.querySelectorAll('.error-text')
-
 // Sections
 let formElem = document.querySelector('form')
 let successElem = document.querySelector('.confirmation-container')
 
 
+
 /***** Event Listeners *****/
-//
 
 submitBtn.addEventListener('click', handleFormSubmit)
 
-
 resetBtn.addEventListener('click', handleAppReset)
 
-
+/*  
+ * Input Validation/Logic:
+ * Check for whitespace entries
+ * Check that data is in correct format
+ * Render error messages and states
+ * Clear error messages and states when data is corrected 
+*/
 appData.forEach( (obj, index) => {
 
   obj.input.addEventListener('input', function(){
     
     let inputData = obj.input.value
 
-    // Logic to handle display of card number
+    // Logic to handle spaced rendering of card number
     let cardLength = (inputData.length > 0 && inputData.length <= 16)
 
-    if(index === 1 &&  cardLength){
+    if(index === 1 && cardLength){
       obj.output.innerText = sliceCardNumber(inputData)
       obj.input.maxLength = '16'
     } else {
@@ -69,27 +72,25 @@ appData.forEach( (obj, index) => {
     let hasExtraWhiteSpace = /^\s{0,}$/.test(inputData)
 
     if(hasExtraWhiteSpace){
-      obj.input.nextElementSibling.innerText = `Can't be blank`
-      applyErrorStyle(obj.input)
+      applyErrorStyle(obj.input, `Can't be blank`)
       obj.isInputValid = false
 
     } else if(!isInputDataValidated){
       // Add field specific error message
-      obj.input.nextElementSibling.innerText = obj.error
-      applyErrorStyle(obj.input)
+      applyErrorStyle(obj.input, obj.error)
       obj.isInputValid = false
     
     } else {
-      obj.input.nextElementSibling.innerText = ''
-      removeErrorStyle(obj.input)
+      // Input is valid
+      removeErrorStyle(obj.input, '')
       obj.isInputValid = true
     }
   })
 })
 
 
+
 /***** Methods *****/
-//
 
 function validateInputData(index, str) {
   let regexArr = [
@@ -103,36 +104,35 @@ function validateInputData(index, str) {
   let regex = new RegExp(regexArr[index])
 
   let isDataCorrect = regex.test(str);
+
   return isDataCorrect ? true : false;
 }
 
 
-function applyErrorStyle (inputField){
+function applyErrorStyle (inputField, msg){
   inputField.classList.add('error-input')
   inputField.nextElementSibling.classList.add('error-state')
   inputField.nextElementSibling.style.display = 'block'
+  inputField.nextElementSibling.innerText = msg
 }
 
 
-function removeErrorStyle (inputField){
+function removeErrorStyle (inputField, msg){
   inputField.classList.remove('error-input')
   inputField.nextElementSibling.classList.remove('error-state')
   inputField.nextElementSibling.style.display = 'none'
+  inputField.nextElementSibling.innerText = msg
 }
 
 
-// Edge case: 
-// User tries to submit without entering any data
+/* Edge case: User tries to submit without any keyed data */
 function checkEmptyFields(){
-  appData.forEach( (obj, index) => {
+  appData.forEach( (obj) => {
     if(obj.input.value === ''){
       
       let blankErrorMsg = `Can't be blank`
-      obj.input.nextElementSibling.style.display = 'block'
-      // apply style
-      errorFields[index].style.color = 'red'
-      errorFields[index].innerText = blankErrorMsg
-      obj.isInputValid === false
+
+      applyErrorStyle(obj.input, blankErrorMsg)
     }
   })
 }
@@ -194,9 +194,5 @@ function handleFormSubmit(){
 function handleAppReset(){
   resetApp()
   successElem.style.display = 'none'
-  formElem.style.display = 'block'
+  formElem.style.display = 'flex'
 }
-
-
-
-
