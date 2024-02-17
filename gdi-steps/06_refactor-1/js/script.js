@@ -4,6 +4,10 @@
  * Create reusable data structure by moving all app fields into an array
  * - This cleans up proliferation of variable names
  * Update methods to handle validation on input 
+ * 
+ * Addendum - Small bug:
+ * When data is entered incorrectly and cleared, the placeholder displayed
+ * on the card image is also cleared.
  */
 
 

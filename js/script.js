@@ -1,31 +1,14 @@
-// Input, Display, Error fields
-const appData = [
-  { input: document.querySelector('#card-name-input'),
-    output: document.querySelector('#card-name-display'),
-    error: `No symbols, characters, extra spaces`,
-    isInputValid: null
-  },
-  { input: document.querySelector('#card-number-input'),
-    output: document.querySelector('#card-number-display'),
-    error: `Must be 16 digits, no spaces`,
-    isInputValid: null
-  },
-  { input: document.querySelector('#card-month-input'),
-    output: document.querySelector('#card-month-display'),
-    error: `Must be: 01-12`,
-    isInputValid: null
-  },
-  { input: document.querySelector('#card-year-input'),
-    output: document.querySelector('#card-year-display'),
-    error: `Must be: 00-29`,
-    isInputValid: null
-  },
-  { input: document.querySelector('#card-cvc-input'),
-    output: document.querySelector('#card-cvc-display'),
-    error: `Must be 3 digits`,
-    isInputValid: null
-  },
-]
+/* Step 06b - Refactoring
+ * Add data-attribute to form markup
+ * Set up app data when window loads
+ * - Cleans up large array from step-6a 
+ * Fixes bug from step-6a:
+ * - Redisplay generic text on card images when user clears input
+ */
+
+
+// Container for input, display, error fields
+const appData = []
 
 // Buttons
 let submitBtn = document.querySelector('#submit-btn')
@@ -37,7 +20,71 @@ let successElem = document.querySelector('.confirmation-container')
 
 
 
-/***** Event Listeners *****/
+/**********************/
+/** Event Listeners **/
+/*********************/
+
+window.addEventListener("load", setupAppData)
+
+submitBtn.addEventListener('click', handleFormSubmit)
+
+resetBtn.addEventListener('click', handleAppReset)
+
+
+
+/***************************/
+/** Functionality Methods **/
+/***************************/
+
+function setupAppData(){
+  
+  // Get all form input fields
+  const inputFields = document.querySelectorAll('form input')
+
+  // Get data attribute values from the input fields
+  inputFields.forEach( (field, index) => {
+    // console.log(field.getAttribute('data-field'))
+    const dataAttr = field.getAttribute('data-field')
+
+    // Set up object for each data (name, number, etc)
+    const dataObj = {}
+
+    // add input: card-input
+    dataObj.input = document.querySelector(`#${dataAttr}-input`)
+    // add output: card-display
+    dataObj.output = document.querySelector(`#${dataAttr}-display`)
+
+    // Add error; use switch statement to assign specific msgs
+    switch(true){
+      case index === 0:
+        dataObj.error = `No symbols, characters, extra spaces`
+        break;
+      case index === 1:
+        dataObj.error = `Must be 16 digits, no spaces`
+        break;
+      case index === 2:
+        dataObj.error = `Enter: 01-12`
+        break
+      case index === 3:
+        dataObj.error = `Enter: 00-29`
+        break;
+      case index === 4:
+        dataObj.error = `Must be 3 digits`
+    }
+
+    // Add initial data valid status
+    dataObj.isInputValid = null
+
+    // Send dataObj to app data array
+    appData.push(dataObj)
+  })
+
+  // Check that data is loaded
+  // console.log(appData)
+
+  runApp(appData)
+}
+
 
 /*  
  * Input Listeners - Validation/Logic:
@@ -46,50 +93,95 @@ let successElem = document.querySelector('.confirmation-container')
  * Render error messages and states
  * Clear error messages and states when data is corrected 
 */
-appData.forEach( (obj, index) => {
+function runApp(appData){
+  appData.forEach( (obj, index) => {
+  
+    obj.input.addEventListener('input', function(){
+      let inputData = obj.input.value
 
-  obj.input.addEventListener('input', function(){
-    
-    let inputData = obj.input.value
+      let cardLength = (inputData.length > 0 && inputData.length <= 16)
 
-    // Logic to handle spaced rendering of card number
-    let cardLength = (inputData.length > 0 && inputData.length <= 16)
-
-    if(index === 1 && cardLength){
-      obj.output.innerText = sliceCardNumber(inputData)
-      obj.input.maxLength = '16'
-    } else {
-      // Display other fields as entered
-      obj.output.innerText = inputData
-    }
-
-    let isInputDataValidated = validateInputData(index, inputData)
-
-    let hasExtraWhiteSpace = /^\s{0,}$/.test(inputData)
-
-    if(hasExtraWhiteSpace){
-      applyErrorStyle(obj.input, `Can't be blank`)
-      obj.isInputValid = false
-
-    } else if(!isInputDataValidated){
-      // Add field specific error message
-      applyErrorStyle(obj.input, obj.error)
-      obj.isInputValid = false
-    
-    } else {
-      // Input is valid
-      removeErrorStyle(obj.input, '')
-      obj.isInputValid = true
-    }
+      // Logic to handle spaced rendering of card number
+      if(index === 1 && cardLength){
+        obj.output.innerText = sliceCardNumber(inputData)
+        obj.input.maxLength = '16'
+      } else {
+        // Display other fields as entered
+        obj.output.innerText = inputData
+      }
+  
+      let isInputDataValidated = validateInputData(index, inputData)
+  
+      let hasExtraWhiteSpace = /^\s{0,}$/.test(inputData)
+  
+      if(hasExtraWhiteSpace){
+        applyErrorStyle(obj.input, `Can't be blank`)
+        redisplayGenericContent(obj, index)
+        obj.isInputValid = false
+  
+      } else if(!isInputDataValidated){
+        applyErrorStyle(obj.input, obj.error)
+        obj.isInputValid = false
+      
+      } else {
+        removeErrorStyle(obj.input, '')
+        obj.isInputValid = true
+      }
+    })
   })
-})
-
-submitBtn.addEventListener('click', handleFormSubmit)
-
-resetBtn.addEventListener('click', handleAppReset)
+}
 
 
-/***** Methods *****/
+function resetApp (){
+  appData.forEach( (obj, index) => {
+    obj.input.value = ''
+    obj.isInputValid = null
+
+    redisplayGenericContent(obj, index)
+
+    // switch(true){
+    //   case index === 0:
+    //     obj.output.innerText = `Jane Appleseed`
+    //     break;
+    //   case index === 1:
+    //     obj.output.innerText = `0000 0000 0000 0000`
+    //     break;
+    //   case index === 2:
+    //   case index === 3:
+    //     obj.output.innerText = `00`
+    //     break;
+    //   case index === 4:
+    //     obj.output.innerText = `000`
+    // }
+  })
+}
+
+
+function handleFormSubmit(){
+
+  checkEmptyFields()
+
+  let allFieldsHaveValidStatus = checkCompletedFields()
+
+  if(allFieldsHaveValidStatus){
+    formElem.style.display = 'none'
+    successElem.style.display = 'block'
+  } 
+}
+
+
+function handleAppReset(){
+  resetApp()
+  successElem.style.display = 'none'
+  formElem.style.display = 'flex'
+}
+
+
+
+/*****************************/
+/** Utility/Helper Methods **/
+/****************************/
+
 
 function validateInputData(index, str) {
   let regexArr = [
@@ -105,6 +197,24 @@ function validateInputData(index, str) {
   let isDataCorrect = regex.test(str);
 
   return isDataCorrect ? true : false;
+}
+
+
+function redisplayGenericContent(obj, index){
+  switch(true){
+    case index === 0:
+      obj.output.innerText = `Jane Appleseed`
+      break;
+    case index === 1:
+      obj.output.innerText = `0000 0000 0000 0000`
+      break;
+    case index === 2:
+    case index === 3:
+      obj.output.innerText = `00`
+      break;
+    case index === 4:
+      obj.output.innerText = `000`
+  }
 }
 
 
@@ -151,47 +261,4 @@ function sliceCardNumber(str){
   }
 
   return slicedNum.trimEnd()
-}
-
-
-function resetApp (){
-  appData.forEach( (obj, index) => {
-    obj.input.value = ''
-    obj.isInputValid = null
-
-    switch(true){
-      case index === 0:
-        obj.output.innerText = `Jane Appleseed`
-        break;
-      case index === 1:
-        obj.output.innerText = `0000 0000 0000 0000`
-        break;
-      case index === 2:
-      case index === 3:
-        obj.output.innerText = `00`
-        break;
-      case index === 4:
-        obj.output.innerText = `000`
-    }
-  })
-}
-
-
-function handleFormSubmit(){
-
-  checkEmptyFields()
-
-  let allFieldsHaveValidStatus = checkCompletedFields()
-
-  if(allFieldsHaveValidStatus){
-    formElem.style.display = 'none'
-    successElem.style.display = 'block'
-  } 
-}
-
-
-function handleAppReset(){
-  resetApp()
-  successElem.style.display = 'none'
-  formElem.style.display = 'flex'
 }
