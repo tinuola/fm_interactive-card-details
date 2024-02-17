@@ -1,5 +1,8 @@
-// Step 04b - Data validation (contd):
-// Update regex
+/*
+ * Step 04a - Data validation (contd):
+ * Update regex
+ */
+
 
 // Card data input
 let cardUsername = document.querySelector('#card-name-input')

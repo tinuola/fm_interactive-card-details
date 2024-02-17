@@ -1,3 +1,12 @@
+/*  
+ * Step 06a - Refactoring
+ * Display data on cards on input
+ * Create reusable data structure by moving all app fields into an array
+ * - This cleans up proliferation of variable names
+ * Update methods to handle validation on input 
+ */
+
+
 // Input, Display, Error fields
 const appData = [
   { input: document.querySelector('#card-name-input'),

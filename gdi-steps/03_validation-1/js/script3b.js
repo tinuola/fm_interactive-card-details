@@ -1,4 +1,8 @@
-// Step 03b - Simple validation: Clear error message on input
+/*
+ * Step 03b - Simple validation (contd):
+ * Clear error message on input
+ */
+
 
 // Card data input
 let cardUsername = document.querySelector('#card-name-input')

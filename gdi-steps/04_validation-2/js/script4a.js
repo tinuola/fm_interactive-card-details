@@ -1,8 +1,10 @@
-// Step 04a - Data validation: 
-// Simple regex validation
-// Move error display logic into checkFields()
-// Move data submission function out of event-listener
-// Refactor error msgs display, styling into smaller functions
+/*
+ * Step 04a - Data validation:
+ * Simple regex validation
+ * Move error display logic into checkFields()
+ * Move data submission function out of event-listener
+ * Refactor error msgs display, styling into smaller functions
+ */
 
 
 // Card data input

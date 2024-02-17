@@ -1,14 +1,3 @@
-:root {
-  /* --var: value */
-  --dark-violet: hsl(278, 68%, 11%);
-  --dark-gray-violet: hsl(279, 6%, 55%);
-  --light-gray-violet: hsl(270, 3%, 87%);
-  --primary-gradient: hsl(249, 99%, 64%);
-  --secondary-gradient: hsl(278, 94%, 30%);
-  --error-red: hsl(0, 100%, 66%);
-  --white: hsl(0, 0%, 100%); 
-}
-
 /* Accessibility */
 .sr-only {
   clip: rect(1px, 1px, 1px, 1px);
@@ -40,15 +29,9 @@
 /* Content */
 
 body {
-  /* display: grid;
-  grid-template-rows: auto 1fr auto; */
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 500;
   font-size: 18px;
-  /* background: linear-gradient(var(--primary-gradient), var(--secondary-gradient)); */
-  /* grid-template-rows: 1fr auto; */
-  /* justify-items: center;
-  align-items: center; */
 }
 
 .card-date-display {

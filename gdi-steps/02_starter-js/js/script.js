@@ -1,4 +1,7 @@
-// Steps 2a, 2b - Starter JS
+/*
+ * Step 02 - Starter JS
+ */
+
 
 // Card data input
 let cardUsername = document.querySelector('#card-name-input')

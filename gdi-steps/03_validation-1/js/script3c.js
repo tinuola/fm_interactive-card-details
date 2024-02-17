@@ -1,4 +1,8 @@
-// Step 03c - Simple validation: Show blank error for specific empty field
+/*
+ * Step 03c - Simple validation (contd):
+ * Show blank error for specific empty field
+ */
+
 
 // Card data input
 let cardUsername = document.querySelector('#card-name-input')

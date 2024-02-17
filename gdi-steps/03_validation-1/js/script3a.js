@@ -1,5 +1,8 @@
-// Step 03a - Simple validation: No empty fields
-//
+/*
+ * Step 03a - Simple validation:
+ * No empty fields
+ */
+
 
 // Card data input
 let cardUsername = document.querySelector('#card-name-input')
