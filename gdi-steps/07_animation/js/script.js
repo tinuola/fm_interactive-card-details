@@ -1,3 +1,11 @@
+/* Step 07 - Animation
+ * Create animation steps/classes in CSS
+ * Cards shake on submit when fields are empty or there is invalid data
+ * Cards scale when form is submitted successfully
+ */
+
+
+
 // Container for input, display, error fields
 const appData = []
 
@@ -162,8 +170,9 @@ function validateInputData(index, str) {
   ]
 
   let regex = new RegExp(regexArr[index])
+
   let isDataCorrect = regex.test(str);
-  
+
   return isDataCorrect ? true : false;
 }
 
@@ -206,7 +215,9 @@ function removeErrorStyle (inputField, msg){
 function checkEmptyFields(){
   appData.forEach( (obj) => {
     if(obj.input.value === ''){
+      
       let blankErrorMsg = `Can't be blank`
+
       applyErrorStyle(obj.input, blankErrorMsg)
     }
   })

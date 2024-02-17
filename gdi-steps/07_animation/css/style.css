@@ -1,0 +1,515 @@
+:root {
+  --dark-violet: hsl(278, 68%, 11%);
+  --dark-gray-violet: hsl(279, 6%, 55%);
+  --light-gray-violet: hsl(270, 3%, 87%);
+  --primary-gradient: hsl(249, 99%, 64%);
+  --secondary-gradient: hsl(278, 94%, 30%);
+  --error-red: hsl(0, 100%, 66%);
+  --white: hsl(0, 0%, 100%); 
+}
+
+
+/**********/
+/* Layout */
+/**********/
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  max-width: 1440px;
+}
+
+.site-container {
+  min-width: 375px;
+}
+
+main {
+  display: grid;
+  grid-template-rows: auto 1fr 200px;
+  grid-template-columns: 1fr;
+  height: 100vh;
+}
+
+@media(min-width: 1199px){
+  main {
+    grid-template-rows: 8fr 1fr;
+    grid-template-columns: 30% 1fr;
+  }
+}
+
+.component-container {
+  width: 340px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+@media(min-width: 1199px){
+  .component-container {
+    width: 380px;
+  }
+}
+
+
+/*************************/
+/* Card section - Purple */
+/*************************/
+
+.section__card {
+  background-image: url('/assets/images/bg-main-mobile.png');
+  height: 240px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: var(--white);
+  position: relative;
+}
+
+@media(min-width: 1199px){
+  .section__card {
+    background-image: url('/assets/images/bg-main-desktop.png');
+    min-height: 700px;
+    height: 100vh;
+    grid-row: span 2;
+  }
+}
+
+.card-container {
+  position: relative;
+}
+
+.card {
+  width: 285px;
+  height: 155px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+}
+
+@media(min-width: 1199px){
+  .card {
+    width: 400px;
+    height: 220px;
+  }
+}
+
+
+/*****************/
+/* Front of card */
+/*****************/
+
+.card__front {
+  background-image: url('/assets/images/bg-card-front.png');
+  padding: 1.25rem;
+  /* position: absolute; */
+  top: 120px;
+  right: 55px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2.25rem;
+}
+
+@media(min-width: 1199px){
+  .card__front {
+    padding: 2rem;
+    top: 140px;
+    right: -100px;
+    row-gap: 3rem;
+  }
+}
+
+/* .card__front img */
+.card-logo {
+  width: 50px;
+}
+
+@media(min-width: 1199px){
+  /* .card__front img */
+  .card-logo {
+    width: 85px;
+  }
+}
+
+#card-number-display {
+  font-size: 1.125rem;
+  letter-spacing: 2px;
+}
+
+@media(min-width: 1199px){
+  #card-number-display {
+    font-size: 1.65rem;
+  }
+}
+
+.card-meta-text-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: .75rem;
+}
+
+.card-meta-text-wrapper span {
+  font-size: .65rem;
+  text-transform: uppercase;
+}
+
+@media(min-width: 1199px){
+  .card-meta-text-wrapper span {
+    font-size: .875rem;
+  }
+}
+
+.card-date-display {
+  display: inline-block;
+}
+
+
+/****************/
+/* Back of card */
+/****************/
+
+.card__back {
+  background-image: url('/assets/images/bg-card-back.png');
+  /* position: absolute; */
+  top: 32px;
+  right: 1px;
+  z-index: 1;
+}
+
+@media(min-width: 1199px){
+  .card__back {
+    top: 405px;
+    right: -175px;
+  }
+}
+
+#card-cvc-display {
+  font-size: .75rem;
+  position: absolute;
+  z-index: 2;
+  top: 67px;
+  right: 40px;
+}
+
+@media(min-width: 1199px){
+  #card-cvc-display {
+    top: 99px;
+    right: 60px;
+  }
+}
+
+
+/****************/
+/* Form section */
+/****************/
+
+.section__form {
+  padding-top: 90px;
+}
+
+@media (min-width: 1199px){
+  .section__form {
+    /* align-self: center; */
+    padding-top: 0;
+    position: relative;
+    /* z-index: 0; */
+    display: flex;
+    align-items: center;
+  }
+}
+
+form { 
+  row-gap: 1.25rem;
+}
+
+input, button {
+  width: 100%;
+}
+
+input {
+  border: 1px solid var(--light-gray-violet);
+  border-radius: .5rem;
+  padding: .5rem .75rem;
+}
+
+input:focus {
+  outline: 1px solid var(--primary-gradient);
+}
+
+.form-label-text {
+  display: block;
+  margin-bottom: .5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: .75rem;
+}
+
+.error-text {
+  font-size: .75rem;
+  margin-top: .45rem;
+  display: none;
+}
+
+.error-state {
+  color: var(--error-red);
+}
+
+.error-input {
+  border: 1px solid var(--error-red);
+}
+
+.error-input:focus{
+  outline: 1px solid var(--error-red);
+}
+
+/* Form input fields */
+.card-meta-input-wrapper,
+.card-dates-input-wrapper,
+.card-dates-inner-wrapper {
+  display: flex;
+}
+
+.card-meta-input-wrapper {
+  -moz-column-gap: .75rem;
+       column-gap: .75rem;
+}
+
+.card-dates-inner-wrapper {
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
+}
+
+.card-dates-input-wrapper {
+  flex-direction: column;
+  flex-basis: 48%;
+}
+
+.card-cvc-input-wrapper {
+  flex-basis: 49%;
+}
+
+/* Remove input field arrows */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Placeholder */
+input::-webkit-input-placeholder {
+  color: var(--light-gray-violet);
+  font-size: 1rem;
+}
+
+input::-moz-placeholder {
+  color: var(--light-gray-violet);
+  font-size: 1rem;
+}
+
+input:-ms-input-placeholder {
+  color: var(--light-gray-violet);
+  font-size: 1rem;
+}
+
+input::-ms-input-placeholder {
+  color: var(--light-gray-violet);
+  font-size: 1rem;
+}
+
+input::placeholder {
+  color: var(--dark-gray-violet);
+  font-size: 1rem;
+}
+
+button {
+  margin-top: .625rem;
+  padding: .625rem 0;
+  border: 2px solid var(--dark-violet);
+  border-radius: .5rem;
+  background-color: var(--dark-violet);
+  color: var(--white);
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity .2s linear, transform .2s linear;
+}
+
+button:hover {
+  opacity: .875;
+  transform: scale(1.02);
+}
+
+
+/*********************/
+/* Success container */
+/*********************/
+
+.confirmation-container {
+  text-align: center;
+  display: none;
+}
+
+.confirmation-container img {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+}
+
+.confirmation-text-wrapper {
+  margin-top: 2.25rem;
+  margin-bottom: 2.25rem;
+}
+
+.confirmation-text-wrapper p:first-of-type {
+  color: var(--dark-violet);
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-size: 1.75rem;
+}
+
+.confirmation-text-wrapper p:last-of-type {
+  margin-top: 1rem;
+  color: var(--dark-gray-violet);
+}
+
+
+/**********/
+/* Footer */
+/**********/
+
+footer {
+  align-self: flex-end;
+  padding-bottom: 1rem;
+}
+
+@media(min-width: 1199px){
+  footer {
+    grid-column: 2/3;
+  }
+}
+
+.fm-byline {
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  line-height: 1.5;
+  text-align: center;
+  font-weight: 400;
+}
+
+.fm-byline,
+.fm-byline a {
+  color: var(--dark-violet);
+}
+
+
+/*******************/
+/* Shake Animation */
+/*******************/
+/* https://css-tricks.com/snippets/css/shake-css-keyframe-animation/ */
+
+.shake {
+  -webkit-animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+          animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  /* -webkit-animation-iteration-count: 3;
+          animation-iteration-count: 3; */
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@-webkit-keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+
+/*******************/
+/* Scale Animation */
+/*******************/
+
+.scale {
+  -webkit-animation: scale 0.5s both;
+          animation: scale 0.5s both;
+}
+
+@-webkit-keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  
+  25% {
+    transform: scale(0.85);
+  }
+
+  50%{
+    transform: scale(1);
+  }
+
+  75% {
+    transform: scale(0.85);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  
+  25% {
+    transform: scale(0.85);
+  }
+
+  50%{
+    transform: scale(1);
+  }
+
+  75% {
+    transform: scale(0.85);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
