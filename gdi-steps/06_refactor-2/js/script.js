@@ -1,3 +1,12 @@
+/* Step 06b - Refactoring
+ * Add data-attribute to form markup
+ * Set up app data when window loads
+ * - Cleans up large array from step-6a 
+ * Fixes bug from step-6a:
+ * - Redisplay generic text on card images when user clears input
+ */
+
+
 // Container for input, display, error fields
 const appData = []
 
@@ -29,18 +38,23 @@ resetBtn.addEventListener('click', handleAppReset)
 
 function setupAppData(){
   
+  // Get all form input fields
   const inputFields = document.querySelectorAll('form input')
 
   // Get data attribute values from the input fields
   inputFields.forEach( (field, index) => {
+    // console.log(field.getAttribute('data-field'))
     const dataAttr = field.getAttribute('data-field')
 
+    // Set up object for each data (name, number, etc)
     const dataObj = {}
 
+    // add input: card-input
     dataObj.input = document.querySelector(`#${dataAttr}-input`)
+    // add output: card-display
     dataObj.output = document.querySelector(`#${dataAttr}-display`)
-    dataObj.isInputValid = null
 
+    // Add error; use switch statement to assign specific msgs
     switch(true){
       case index === 0:
         dataObj.error = `No symbols, characters, extra spaces`
@@ -58,8 +72,15 @@ function setupAppData(){
         dataObj.error = `Must be 3 digits`
     }
 
+    // Add initial data valid status
+    dataObj.isInputValid = null
+
+    // Send dataObj to app data array
     appData.push(dataObj)
   })
+
+  // Check that data is loaded
+  // console.log(appData)
 
   runApp(appData)
 }
