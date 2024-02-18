@@ -46,7 +46,7 @@ function setupAppData(){
 
     switch(true){
       case index === 0:
-        dataObj.error = `No characters, punctuations, numbers, or extra spaces \nName can be up to 25 alphabetical letters`
+        dataObj.error = `No characters, punctuations, numbers, or extra spaces \nNo more than four single names: (Jane Jan Smith Jones) \nMaximum of 25 alphabetical letters`
         break;
       case index === 1:
         dataObj.error = `Must be 16 digits, no spaces`
@@ -81,18 +81,28 @@ function runApp(appData){
     obj.input.addEventListener('input', function(){
       let inputData = obj.input.value
 
+      // Condition to handle spaced rendering of card number
       let cardLength = (inputData.length > 0 && inputData.length <= 16)
 
-      // Logic to handle spaced rendering of card number
-      if(index === 1 && cardLength){
-        obj.output.innerText = sliceCardNumber(inputData)
-        obj.input.maxLength = '16'
-      } else if(index === 0){
-        obj.output.innerText = inputData
-        obj.input.maxLength = '25'
-      } else {
-        // Display other fields as entered
-        obj.output.innerText = inputData
+      switch(true){
+        case index === 0:
+          obj.input.maxLength = '25'
+          obj.output.innerText = inputData
+          break;
+        case (index === 1 && cardLength):
+          obj.input.maxLength = '16'
+          obj.output.innerText = sliceCardNumber(inputData)
+          break;
+        case index === 2:
+        case index === 3:
+          obj.input.maxLength = '2' 
+          obj.output.innerText = inputData
+          break;
+        case index === 4:
+          obj.input.maxLength = '3'
+          obj.output.innerText = inputData
+          break;
+        default: obj.output.innerText = inputData
       }
   
       let isInputDataValidated = validateInputData(index, inputData)
