@@ -6,7 +6,8 @@
 
 
 
-// Container for input, display, error fields
+// Container for input, display, error fields, field states
+// Updates when window loads and runs setupAppData()
 const appData = []
 
 // Buttons

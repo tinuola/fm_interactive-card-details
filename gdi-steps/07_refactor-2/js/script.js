@@ -1,13 +1,15 @@
 /* Step 07 - Refactoring
- * Add data-attribute to form markup
- * Set up app data when window loads
+ * Add data-attribute to form markup (HTML)
+ * New app architecture:
+ * - Set up app data when window loads
  * - Cleans up large array from step-6 
- * Fixes bug from step-6a:
+ * Fixes bug from step-6:
  * - Redisplay generic text on card images when user clears input
  */
 
 
-// Container for input, display, error fields
+// Container for input, display, error fields, field states
+// Updates when window loads and runs setupAppData()
 const appData = []
 
 // Buttons
