@@ -46,7 +46,7 @@ function setupAppData(){
 
     switch(true){
       case index === 0:
-        dataObj.error = `No symbols, characters, extra spaces`
+        dataObj.error = `No characters, punctuations, numbers, or extra spaces \nName can be up to 25 alphabetical letters`
         break;
       case index === 1:
         dataObj.error = `Must be 16 digits, no spaces`
@@ -87,6 +87,9 @@ function runApp(appData){
       if(index === 1 && cardLength){
         obj.output.innerText = sliceCardNumber(inputData)
         obj.input.maxLength = '16'
+      } else if(index === 0){
+        obj.output.innerText = inputData
+        obj.input.maxLength = '25'
       } else {
         // Display other fields as entered
         obj.output.innerText = inputData
@@ -132,9 +135,9 @@ function handleFormSubmit(){
   if(allFieldsHaveValidStatus){
     formElem.style.display = 'none'
     successElem.style.display = 'block'
-    scaleAnimation()
+    runScaleAnimation()
   } else {
-    shakeAnimation()
+    runShakeAnimation()
   }   
 }
 
@@ -151,10 +154,12 @@ function handleAppReset(){
 /** Utility/Helper Methods **/
 /****************************/
 
-
 function validateInputData(index, str) {
   let regexArr = [
-    `^[A-Z][a-z]*(([,.] |[ '-])[A-Za-z][a-z]*)*(\.?)$`, /* Full name */
+    // Regex for full name: Any string combination without 
+    // numbers, symbols, punctuations; repeated up to four times;
+    // max length of 25 letters 
+    `^(?!.{26})[a-zA-Z-]+(?: [a-zA-Z]+(?: [a-zA-Z]+(?: [a-zA-Z-]+)?)?)?$`, 
     `^([0-9]){16}$`, /* 16-digits */
     `^([0][1-9])|[1][0-2]$`, /* 2-digit month*/
     `^([0-2][0-9])$`, /* 2-digit year */
@@ -230,7 +235,7 @@ function sliceCardNumber(str){
 }
 
 
-function scaleAnimation(){
+function runScaleAnimation(){
   cards.forEach( card => {
     setTimeout(() => {
       card.classList.add('scale')
@@ -243,7 +248,7 @@ function scaleAnimation(){
 }
 
 
-function shakeAnimation(){
+function runShakeAnimation(){
   cards.forEach( card => {
     card.classList.add('shake')
     setTimeout(() => {
