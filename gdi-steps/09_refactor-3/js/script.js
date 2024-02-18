@@ -42,7 +42,6 @@ resetBtn.addEventListener('click', handleAppReset)
 /***************************/
 
 function setupAppData(){
-  
   const inputFields = document.querySelectorAll('form input')
 
   // Get data attribute values from the input fields
@@ -57,7 +56,9 @@ function setupAppData(){
 
     switch(true){
       case index === 0:
-        dataObj.error = `No characters, punctuations, numbers, or extra spaces \nNo more than four single names: (Jane Jan Smith Jones) \nMaximum of 25 alphabetical letters`
+        dataObj.error = `No characters, punctuations, numbers, or extra spaces 
+        No more than four single names: (Jane Jan Smith Jones) 
+        Maximum of 25 alphabetical letters`
         break;
       case index === 1:
         dataObj.error = `Must be 16 digits, no spaces`
@@ -141,7 +142,6 @@ function runApp(appData){
 
 
 function handleFormSubmit(){
-
   checkEmptyFields()
 
   let allFieldsHaveValidStatus = checkCompletedFields()
@@ -241,7 +241,6 @@ function checkEmptyFields(){
 
 
 function checkCompletedFields(){
-
   appData.forEach( obj => {
     if(!obj.isInputValid){
       runShakeAnimation(obj.input)
