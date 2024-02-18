@@ -20,9 +20,11 @@ Live Site: [tinuola.github.io/fm_interactive-card-details](https://tinuola.githu
 
 ### Retrospective
 
-- A good project to practice building custom form validation, especially the logic/sequence for validating input as it's typed, and then updating the form and display states as input is corrected
-- A regex pattern that can account for the many ways a fullname can be constructed is non-existent? 🤷🏽‍♀️ - The simplest and least tedious approach, though definitely not inclusive, was to default to alphabetical character-only input (no more than a single blank space between names) up to a specific length
-- A good case for using animation (e.g., card movements) to enhance visual interest or UI-UX
+- Building custom form validation, especially the logic/sequence for validating input as it is typed, and then updating the form and display states as input is corrected
+- Functional programming practice/approach
+- A regex pattern that can account for the many ways a fullname can be constructed is non-existent? 🤷🏽‍♀️
+  - The simplest and least tedious approach, though definitely not inclusive, was to default to alphabetical character-only input (no more than a single blank space between names) up to a specific length
+- Using animation (e.g., card movements) to enhance visual interest or UI-UX
 - Challenge was project #2 of *[GDI's](https://girldevelopit.com/) Frontend Projects (Beginner) Workshop* mini-cohort in February 2024 that I faciliated
   - Code implementation of the [project's phases/steps](https://docs.google.com/document/d/1RS8ger3OMobcRFmZ4Q-MYCY720ZdVzY3VKQ3kzRMUdU/edit?usp=sharing) are archived in the **[gdi-steps](/gdi-steps/)** folder
 
