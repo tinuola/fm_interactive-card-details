@@ -146,9 +146,7 @@ function handleFormSubmit(){
     formElem.style.display = 'none'
     successElem.style.display = 'block'
     runScaleAnimation()
-  } else {
-    runShakeAnimation()
-  }   
+  }
 }
 
 
@@ -223,6 +221,12 @@ function checkEmptyFields(){
     if(obj.input.value === ''){
       let blankErrorMsg = `Can't be blank`
       applyErrorStyle(obj.input, blankErrorMsg)
+
+      obj.input.classList.add('shake')
+      setTimeout(() => {
+        obj.input.classList.remove('shake')
+      }, 500)
+
     }
   })
 }
@@ -254,15 +258,5 @@ function runScaleAnimation(){
     setTimeout(() => {
       card.classList.remove('scale')
     }, 1000)
-  })
-}
-
-
-function runShakeAnimation(){
-  cards.forEach( card => {
-    card.classList.add('shake')
-    setTimeout(() => {
-      card.classList.remove('shake')
-    }, 500)
   })
 }
