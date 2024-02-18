@@ -1,3 +1,11 @@
+/* Step 08 - Animation
+ * Create animation steps/classes in CSS
+ * Cards shake on submit when fields are empty or there is invalid data
+ * Cards scale when form is submitted successfully
+ */
+
+
+
 // Container for input, display, error fields
 const appData = []
 
@@ -46,7 +54,7 @@ function setupAppData(){
 
     switch(true){
       case index === 0:
-        dataObj.error = `No characters, punctuations, numbers, or extra spaces \nNo more than four single names: (Jane Jan Smith Jones) \nMaximum of 25 alphabetical letters`
+        dataObj.error = `No symbols, characters, extra spaces`
         break;
       case index === 1:
         dataObj.error = `Must be 16 digits, no spaces`
@@ -81,29 +89,15 @@ function runApp(appData){
     obj.input.addEventListener('input', function(){
       let inputData = obj.input.value
 
-      // Condition to handle spaced rendering of card number
       let cardLength = (inputData.length > 0 && inputData.length <= 16)
 
-      // Limit how many characters can be entered into input fields
-      switch(true){
-        case index === 0:
-          obj.input.maxLength = '25'
-          obj.output.innerText = inputData
-          break;
-        case (index === 1 && cardLength):
-          obj.input.maxLength = '16'
-          obj.output.innerText = sliceCardNumber(inputData)
-          break;
-        case index === 2:
-        case index === 3:
-          obj.input.maxLength = '2' 
-          obj.output.innerText = inputData
-          break;
-        case index === 4:
-          obj.input.maxLength = '3'
-          obj.output.innerText = inputData
-          break;
-        default: obj.output.innerText = inputData
+      // Logic to handle spaced rendering of card number
+      if(index === 1 && cardLength){
+        obj.output.innerText = sliceCardNumber(inputData)
+        obj.input.maxLength = '16'
+      } else {
+        // Display other fields as entered
+        obj.output.innerText = inputData
       }
   
       let isInputDataValidated = validateInputData(index, inputData)
@@ -112,7 +106,6 @@ function runApp(appData){
   
       if(hasExtraWhiteSpace){
         applyErrorStyle(obj.input, `Can't be blank`)
-        // Reset card display if user completely removes their input
         redisplayGenericContent(obj, index)
         obj.isInputValid = false
   
@@ -121,10 +114,19 @@ function runApp(appData){
         obj.isInputValid = false
       
       } else {
-        removeErrorStyle(obj.input)
+        removeErrorStyle(obj.input, '')
         obj.isInputValid = true
       }
     })
+  })
+}
+
+
+function resetApp (){
+  appData.forEach( (obj, index) => {
+    obj.input.value = ''
+    obj.isInputValid = null
+    redisplayGenericContent(obj, index)
   })
 }
 
@@ -138,8 +140,10 @@ function handleFormSubmit(){
   if(allFieldsHaveValidStatus){
     formElem.style.display = 'none'
     successElem.style.display = 'block'
-    runScaleAnimation()
-  }
+    scaleAnimation()
+  } else {
+    shakeAnimation()
+  }   
 }
 
 
@@ -150,25 +154,15 @@ function handleAppReset(){
 }
 
 
-function resetApp (){
-  appData.forEach( (obj, index) => {
-    obj.input.value = ''
-    obj.isInputValid = null
-    redisplayGenericContent(obj, index)
-  })
-}
-
 
 /*****************************/
 /** Utility/Helper Methods **/
 /****************************/
 
+
 function validateInputData(index, str) {
   let regexArr = [
-    // Regex for full name: Any string combination without 
-    // numbers, symbols, punctuations; repeated up to four times;
-    // max length of 25 letters 
-    `^(?!.{26})[a-zA-Z-]+(?: [a-zA-Z]+(?: [a-zA-Z]+(?: [a-zA-Z-]+)?)?)?$`, 
+    `^[A-Z][a-z]*(([,.] |[ '-])[A-Za-z][a-z]*)*(\.?)$`, /* Full name */
     `^([0-9]){16}$`, /* 16-digits */
     `^([0][1-9])|[1][0-2]$`, /* 2-digit month*/
     `^([0-2][0-9])$`, /* 2-digit year */
@@ -176,8 +170,9 @@ function validateInputData(index, str) {
   ]
 
   let regex = new RegExp(regexArr[index])
+
   let isDataCorrect = regex.test(str);
-  
+
   return isDataCorrect ? true : false;
 }
 
@@ -208,11 +203,11 @@ function applyErrorStyle (inputField, msg){
 }
 
 
-function removeErrorStyle (inputField){
+function removeErrorStyle (inputField, msg){
   inputField.classList.remove('error-input')
   inputField.nextElementSibling.classList.remove('error-state')
   inputField.nextElementSibling.style.display = 'none'
-  inputField.nextElementSibling.innerText = ''
+  inputField.nextElementSibling.innerText = msg
 }
 
 
@@ -220,32 +215,20 @@ function removeErrorStyle (inputField){
 function checkEmptyFields(){
   appData.forEach( (obj) => {
     if(obj.input.value === ''){
+      
       let blankErrorMsg = `Can't be blank`
+
       applyErrorStyle(obj.input, blankErrorMsg)
-      runShakeAnimation(obj.input)
     }
   })
 }
 
 
 function checkCompletedFields(){
-
-  appData.forEach( obj => {
-    if(!obj.isInputValid){
-      runShakeAnimation(obj.input)
-    }
-  })
-
   return appData.every( obj => obj.isInputValid === true )
 }
 
 
-/*  
- * Loop through a sequence of string numbers,
- * creating a substring after every fourth digit
- * and adding a blank space to each substring;
- * remove any dangling blank space remaining
- */
 function sliceCardNumber(str){
   let slicedNum = ''
 
@@ -258,26 +241,24 @@ function sliceCardNumber(str){
 }
 
 
-// Add shake animation, then remove after .5sec
-function runShakeAnimation(field){
-  field.classList.add('shake')
-    setTimeout(() => {
-      field.classList.remove('shake')
-    }, 500)
-}
-
-
-function runScaleAnimation(){
+function scaleAnimation(){
   cards.forEach( card => {
-    // Wait .1s after successful submit action
-    // before applying scale animation 
     setTimeout(() => {
       card.classList.add('scale')
     }, 100)
 
-    // Remove animation
     setTimeout(() => {
       card.classList.remove('scale')
     }, 1000)
+  })
+}
+
+
+function shakeAnimation(){
+  cards.forEach( card => {
+    card.classList.add('shake')
+    setTimeout(() => {
+      card.classList.remove('shake')
+    }, 500)
   })
 }

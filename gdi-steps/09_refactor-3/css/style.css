@@ -57,7 +57,7 @@ main {
 /*************************/
 
 .section__card {
-  background-image: url('../assets/images/bg-main-mobile.png');
+  background-image: url('/assets/images/bg-main-mobile.png');
   height: 240px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -67,7 +67,7 @@ main {
 
 @media(min-width: 1199px){
   .section__card {
-    background-image: url('../assets/images/bg-main-desktop.png');
+    background-image: url('/assets/images/bg-main-desktop.png');
     min-height: 700px;
     height: 100vh;
     grid-row: span 2;
@@ -99,7 +99,7 @@ main {
 /*****************/
 
 .card__front {
-  background-image: url('../assets/images/bg-card-front.png');
+  background-image: url('/assets/images/bg-card-front.png');
   padding: 1.25rem;
   top: 120px;
   right: 55px;
@@ -173,7 +173,7 @@ main {
 /****************/
 
 .card__back {
-  background-image: url('../assets/images/bg-card-back.png');
+  background-image: url('/assets/images/bg-card-back.png');
   top: 32px;
   right: 1px;
   z-index: 1;

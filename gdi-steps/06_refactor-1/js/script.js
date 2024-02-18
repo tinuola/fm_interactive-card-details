@@ -1,5 +1,5 @@
 /*  
- * Step 06a - Refactoring
+ * Step 06 - Refactoring
  * Display data on cards on input
  * Create reusable data structure by moving all app fields into an array
  * - This cleans up proliferation of variable names

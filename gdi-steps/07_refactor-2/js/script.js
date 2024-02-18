@@ -1,7 +1,7 @@
-/* Step 06b - Refactoring
+/* Step 07 - Refactoring
  * Add data-attribute to form markup
  * Set up app data when window loads
- * - Cleans up large array from step-6a 
+ * - Cleans up large array from step-6 
  * Fixes bug from step-6a:
  * - Redisplay generic text on card images when user clears input
  */

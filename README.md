@@ -42,7 +42,6 @@ Live Site: [tinuola.github.io/fm_interactive-card-details](https://tinuola.githu
 - CSS Positioning
 - Regular Expressions
   - Modified: [Regex to validate full name](https://stackoverflow.com/a/63307042) _(Stack Overflow)_
-- [Hide Arrows from Input Number](https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp) _(W3Schools)_
 - [CSS Shake Animation](https://css-tricks.com/snippets/css/shake-css-keyframe-animation/) _(CSS Tricks)_
 
 _Visit my [Frontend Mentor profile](https://www.frontendmentor.io/profile/tinuola) to view other challenges I've completed!_
